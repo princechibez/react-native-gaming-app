@@ -8,7 +8,7 @@ function DetailsScreen({ route, navigation }) {
       <Text style={{color: "#000"}}>Details Screen</Text>
       <Text style={{color: "#000"}}>name: {name} and age: {age}</Text>
       <Button
-      title='Go to details page' onPress={() => navigation.navigate("Details")} />
+      title='Go to details page' onPress={() => navigation.push("Details")} />
     </View>
   );
 }
