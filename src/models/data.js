@@ -51,7 +51,7 @@ export const freeGames = [
     },
     {
         poster: require('../../Assets/images/game5.jpg'),
-        title: "Mili-Militant ljdflajdljfnaldjfnl",
+        title: "Mili-Militant",
         subTitle: "War Situation",
         isFree: "Yes",
         id: 6

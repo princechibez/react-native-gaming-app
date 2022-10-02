@@ -7,14 +7,16 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  StatusBar
+  StatusBar,
+  Animated
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 
 import changeNavigationBarColor from 'react-native-navigation-bar-color'
 import Feather from 'react-native-vector-icons/Feather';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
+import { Swipeable } from 'react-native-gesture-handler';
 
 import {freeGames, paidGames} from '../models/data';
 import ListItem from '../components/listItem';
@@ -24,13 +26,23 @@ import {slideData} from '../models/data';
 import BannerSlider from '../components/BannerSlider';
 
 const HomeScreen = (props) => {
-    changeNavigationBarColor('black', false)
+    // changeNavigationBarColor('black', false)
   const [entries, setEntries] = useState(slideData);
   const [activeSlide, setActiveSlide] = useState(0);
   const [gamesTab, setGamesTab] = useState('freemode');
 
+  // const testAnimRef = useRef(new Animated.Value(0)).current;
+
+  // const playAnimation = () => {
+  //   Animated.timing(testAnimRef, {
+  //     toValue: 1,
+  //     duration: 500,
+  //     useNativeDriver: true
+  //   }).start()
+  // }
+
   const renderBanner = ({item, index}) => {
-    return <BannerSlider data={item} />;
+    return <BannerSlider data={item} />
   };
 
   //   const pagination = () => {
@@ -162,10 +174,22 @@ const HomeScreen = (props) => {
             setGameTab={setGamesTab}
           />
         </View>
+        <View>
         {gamesTab === 'freemode' &&
-          freeGames.map(game => <ListItem onPress={() => props.navigation.navigate("GameDetails")} key={game.id} gameDetails={game} />)}
+          freeGames.map(game => <ListItem onPress={() => 
+          props.navigation.navigate("GameDetails", {
+            gameDetails: game
+          })} key={game.id} gameDetails={game} />)}
+          </View>
+          <View>
         {gamesTab === 'paidmode' &&
-          paidGames.map(game => <ListItem onPress={() => props.navigation.navigate("GameDetails")} key={game.id} gameDetails={game} />)}
+          paidGames.map(game => (
+              <ListItem onPress={() => 
+              props.navigation.navigate("GameDetails", {
+                gameDetails: game
+              })} key={game.id} gameDetails={game} />
+          ))}
+        </View>
       </ScrollView>
     </SafeAreaView>
   );

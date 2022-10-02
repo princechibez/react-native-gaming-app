@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   TouchableOpacity,
   StatusBar,
+  Platform,
 } from 'react-native';
 import changeNavigationBarColor, {
   hideNavigationBar,
@@ -21,20 +22,21 @@ const App = () => {
   const Stack = createNativeStackNavigator();
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen
           name="Main"
           component={Main}
-          options={{headerShown: false}}
         />
-        <Stack.Screen name="Home" component={TabNavigation} options={{headerShown: false}} />
+        <Stack.Screen name="Home" component={TabNavigation} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
 
 const Main = props => {
-  changeNavigationBarColor("translucent", false)
+  if (Platform.OS === 'android') {
+    hideNavigationBar()
+  }
   return (
     <SafeAreaView
       style={{
