@@ -16,7 +16,7 @@ import changeNavigationBarColor from 'react-native-navigation-bar-color'
 import Feather from 'react-native-vector-icons/Feather';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
-import { Swipeable } from 'react-native-gesture-handler';
+// import { Swipeable, GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import {freeGames, paidGames} from '../models/data';
 import ListItem from '../components/listItem';
